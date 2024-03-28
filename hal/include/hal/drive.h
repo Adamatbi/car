@@ -1,0 +1,13 @@
+// Part of the Hardware Abstraction Layer (HAL) 
+
+#ifndef _DRIVE_H_
+#define _DRIVE_H_
+
+#include <stdbool.h>
+
+void drive_init(void);
+void drive_set_left_wheel(bool forward);
+void drive_set_right_wheel(bool forward);
+void drive_cleanup(void);
+
+#endif
