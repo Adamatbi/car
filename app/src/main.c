@@ -12,7 +12,7 @@ int main()
     drive_init();    
     
     sleep(1);
-    turn_left(45);
+    turn_left(10);
 
     //cleanup
     drive_cleanup();

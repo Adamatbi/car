@@ -15,8 +15,8 @@
 
 // Allow module to ensure it has been initialized (once!)
 static bool is_initialized = false;
-
-double secondPerRotation = 1.2;
+double rampUpTime = 0.04;
+double secondPerRotation = 1.1;
 double secondPerDegree;
 
 
@@ -37,7 +37,7 @@ void turn_left(int degree)
 {
     drive_set_left_wheel(false);
     drive_set_right_wheel(true);
-    usleep(degree * secondPerDegree * 1000000);
+    usleep((degree * secondPerDegree * 1000000)-rampUpTime*1000000);
     drive_set_left_wheel(false);
     drive_set_right_wheel(false);
 }
@@ -61,6 +61,13 @@ void drive_set_right_wheel(bool forward)
 {
     assert(is_initialized);
     set_int_value_in_file(RIGHT_WHEEL_VALUE_FILE_PATH, !forward ? 1 : 0);
+}
+
+void drive_set_both_wheels(bool forward)
+{
+    assert(is_initialized);
+    drive_set_left_wheel(forward);
+    drive_set_right_wheel(forward);
 }
 
 void drive_cleanup(void)
